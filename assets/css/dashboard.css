@@ -24,7 +24,7 @@ a { color: inherit; }
   padding: 24px 16px 20px;
   overflow: hidden;
   color: #fff;
-  background: #07385b url("../assets/fundo-login.jpg") center / cover no-repeat;
+  background: #07385b url("../fundo-login.jpg") center / cover no-repeat;
   isolation: isolate;
 }
 

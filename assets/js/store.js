@@ -4,17 +4,25 @@
    mantendo os mesmos nomes e retornos.
    ========================================================================== */
 (function () {
-  const PREFIX = 'notafacil:';
+  /* Conta de demonstração: usa os dados de exemplo.
+     Contas criadas no cadastro têm dados próprios, começando sem notas. */
+  const EMAIL_DEMO = 'camila@estudioaurora.com.br';
+  const SESSAO_KEY = 'notafacil:sessao';          // gravada pelo login (auth.js)
+  const USUARIOS_KEY = 'notafacil:usuarios';      // contas criadas no cadastro (auth.js)
+
+  const read = (k, fb) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch (e) { return fb; } };
+  const sessaoAtual = read(SESSAO_KEY, null);
+  const contaDemo = !sessaoAtual || String(sessaoAtual.email).toLowerCase() === EMAIL_DEMO;
+  const PREFIX = contaDemo ? 'notafacil:' : `notafacil:conta:${String(sessaoAtual.email).toLowerCase()}:`;
   const K = {
     notas: PREFIX + 'notas',
     empresa: PREFIX + 'empresa',
     config: PREFIX + 'config',
-    sessao: PREFIX + 'sessao',      // gravada pela página de login
+    sessao: SESSAO_KEY,
     versao: PREFIX + 'versao',
   };
   const VERSAO_DADOS = '1';
 
-  const read = (k, fb) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch (e) { return fb; } };
   const write = (k, v) => {
     try { localStorage.setItem(k, JSON.stringify(v)); return true; }
     catch (e) { if (window.U) U.toast('Não foi possível salvar: o armazenamento do navegador está cheio.', 'error'); return false; }
@@ -152,12 +160,22 @@
 
   /* ---------- Inicialização ---------- */
   function init() {
-    if (read(K.versao) !== VERSAO_DADOS) {
+    if (read(K.versao) === VERSAO_DADOS) return;
+    if (contaDemo) {
       write(K.empresa, EMPRESA_PADRAO);
-      write(K.config, CONFIG_PADRAO);
+      write(K.config, { ...CONFIG_PADRAO, ...read(K.config, {}) });
       write(K.notas, seedNotas());
-      write(K.versao, VERSAO_DADOS);
+    } else {
+      /* Conta nova: dados do cadastro, sem notas e sem certificado */
+      const u = (read(USUARIOS_KEY, []) || []).find((x) => x.email === String(sessaoAtual.email).toLowerCase()) || {};
+      write(K.empresa, {
+        cnpj: u.cnpj || '', razaoSocial: u.razaoSocial || sessaoAtual.nome || '', nomeFantasia: '',
+        inscricaoMunicipal: '', regime: 'Simples Nacional', email: u.email || sessaoAtual.email, endereco: '', cep: '',
+      });
+      write(K.config, { ...CONFIG_PADRAO, certificado: null, ...read(K.config, {}) });
+      write(K.notas, []);
     }
+    write(K.versao, VERSAO_DADOS);
   }
 
   const Store = {
@@ -166,7 +184,7 @@
     sessao() { return read(K.sessao, null); },
     garantirSessao() {
       let s = read(K.sessao, null);
-      if (!s && !window.APP_CONFIG.exigirLogin) { s = SESSAO_DEMO; write(K.sessao, s); }
+      if (!s && !(window.APP_CONFIG && APP_CONFIG.exigirLogin)) { s = SESSAO_DEMO; write(K.sessao, s); }
       return s;
     },
     sair() { localStorage.removeItem(K.sessao); },
@@ -251,11 +269,11 @@
       const lista = [];
       this.notas().filter((n) => n.status === 'pendente').forEach((n) => lista.push({
         id: `pend-${n.id}`, icone: 'clock', titulo: `Nota #${n.numero} aguardando autorização`,
-        texto: `${n.tomador.nome} · ${U.money(n.valores.servico)}`, link: `nota.html?id=${n.id}`,
+        texto: `${n.tomador.nome} · ${U.money(n.valores.servico)}`, link: `${rota('nota', { id: n.id })}`,
       }));
       this.notas().filter((n) => n.status === 'rejeitada').forEach((n) => lista.push({
         id: `rej-${n.id}`, icone: 'alert', titulo: `Nota #${n.numero} rejeitada`,
-        texto: 'Corrija os dados e reenvie', link: `emitir.html?editar=${n.id}`,
+        texto: 'Corrija os dados e reenvie', link: `${rota('emitir', { editar: n.id })}`,
       }));
       const cert = this.config().certificado;
       if (cert) {
@@ -263,7 +281,7 @@
         if (dias <= 365) lista.push({
           id: `cert-${cert.validade}`, icone: 'shield',
           titulo: dias < 0 ? 'Certificado digital vencido' : `Certificado digital vence em ${dias} dias`,
-          texto: `Validade: ${U.dateBR(cert.validade)}`, link: 'configuracoes.html#certificado',
+          texto: `Validade: ${U.dateBR(cert.validade)}`, link: rota('configuracoes') + '#certificado',
         });
       }
       return lista.map((x) => ({ ...x, lida: lidas.includes(x.id) }));
@@ -339,6 +357,7 @@
     },
 
     /* Apaga tudo e volta aos dados de demonstração */
+    contaDemo,
     restaurarDemo() {
       [K.notas, K.empresa, K.config, K.versao].forEach((k) => localStorage.removeItem(k));
       init();

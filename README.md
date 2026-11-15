@@ -88,3 +88,57 @@ Abra `login/index.html`, `cadastro/index.html` ou `dashboard/index.html` em um n
 * Kevillyn Sandes Dos Santos
 * Leticia Vanni De Aquino
 * Luan Castilho Batista Da Silva
+
+## Como rodar o site
+
+Abra o arquivo `index.html` da raiz no navegador. Ele leva para o login, ou para o dashboard se você já estiver logado. A busca automática de CEP funciona melhor servindo a pasta com um servidor local:
+
+```bash
+python -m http.server 8000   # depois acesse http://localhost:8000
+```
+
+**Conta de demonstração** (já vem com notas de exemplo): `camila@estudioaurora.com.br`, senha `aurora2026`.
+Também dá para criar uma conta nova no cadastro. Ela começa sem notas.
+
+## Estrutura de pastas
+
+```
+.
+├── index.html               entrada: redireciona para login/ ou dashboard/
+├── assets/
+│   ├── css/
+│   │   ├── auth.css         login e cadastro
+│   │   ├── dashboard.css    barra lateral, cabeçalho e dashboard (visual de todas as páginas internas)
+│   │   └── app.css          formulários, tabelas, modais e nota das páginas internas
+│   ├── js/
+│   │   ├── auth.js          login, cadastro e sessão
+│   │   ├── config.js        endereços das páginas (rotas)
+│   │   ├── layout.js        monta menu, cabeçalho, notificações e botão Sair
+│   │   ├── store.js         dados salvos no navegador, cálculo do ISS, XML
+│   │   ├── utils.js         máscaras, validações, modais, avisos
+│   │   ├── icons.js, barcode.js, acoes.js
+│   │   └── pages/           um script por página (dashboard, emitir, historico, configuracoes, nota)
+│   ├── fundo-login.jpg
+│   ├── logo-nota-facil.png
+│   └── favicon.svg
+├── login/index.html
+├── cadastro/index.html
+├── dashboard/index.html     Visão geral
+├── emitir/index.html        Emitir NFS-e (formulário → envio → resultado)
+├── historico/index.html     Histórico: busca, filtros, PDF, editar, cancelar, exportar
+├── configuracoes/index.html Dados da empresa, logo, senha, 2 etapas, certificado
+└── nota/index.html          Detalhes da nota: PDF, XML e envio por e-mail
+```
+
+## Como as páginas se conectam
+
+- Login → `dashboard/`. A sessão fica em `localStorage` (`notafacil:sessao`). Sem sessão, as páginas internas voltam para o login.
+- Cadastro → login, com o e-mail já preenchido.
+- O menu lateral e o cabeçalho de todas as páginas internas são gerados pelo `assets/js/layout.js`. Para criar uma página nova, copie o esqueleto de uma existente (`<div class="dashboard-layout" data-page="...">` + `<main class="dashboard-content">`) e cadastre o endereço em `assets/js/config.js`.
+- O botão **Sair** apaga a sessão e volta para o login.
+
+## Observações
+
+- Os dados ficam salvos no navegador (`localStorage`). Para usar um servidor real, troque as funções de `assets/js/store.js` e `assets/js/auth.js` mantendo os mesmos nomes.
+- A autorização da prefeitura é **simulada**, e a tela de resultado informa isso.
+- "Salvar PDF" usa a impressão do navegador (destino: Salvar como PDF).

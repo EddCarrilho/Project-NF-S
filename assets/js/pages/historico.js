@@ -66,11 +66,11 @@
   /* ---------- Renderização ---------- */
   const tbody = U.$('[data-lista]');
   function acoes(n) {
-    const a = [`<a class="action" href="nota.html?id=${n.id}" title="Ver nota e baixar PDF">${icon('filePdf', 16)}PDF</a>`];
+    const a = [`<a class="action" href="${rota('nota', { id: n.id })}" title="Ver nota e baixar PDF">${icon('filePdf', 16)}PDF</a>`];
     if (n.status === 'pendente') a.push(`<button type="button" class="action" data-consultar="${n.id}">${icon('refresh', 16)}Consultar</button>`);
-    if (n.status === 'rejeitada') a.push(`<a class="action" href="emitir.html?editar=${n.id}">${icon('fileEdit', 16)}Corrigir</a>`);
+    if (n.status === 'rejeitada') a.push(`<a class="action" href="${rota('emitir', { editar: n.id })}">${icon('fileEdit', 16)}Corrigir</a>`);
     if (n.status === 'autorizada' || n.status === 'pendente') {
-      a.push(`<a class="action" href="emitir.html?editar=${n.id}">${icon('fileEdit', 16)}Editar</a>`);
+      a.push(`<a class="action" href="${rota('emitir', { editar: n.id })}">${icon('fileEdit', 16)}Editar</a>`);
       a.push(`<button type="button" class="action action--danger" data-cancelar="${n.id}">${icon('xCircle', 16)}Cancelar</button>`);
     }
     return a.join('');

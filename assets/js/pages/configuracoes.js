@@ -161,7 +161,8 @@
   });
   renderCert();
 
-  /* ---------- Restaurar demonstração ---------- */
+  /* ---------- Restaurar demonstração (só na conta de demonstração) ---------- */
+  if (!Store.contaDemo) U.$('[data-restaurar]').closest('.card').hidden = true;
   U.$('[data-restaurar]').addEventListener('click', async () => {
     const ok = await U.modal({ title: 'Restaurar dados de exemplo?', text: 'Todas as notas e configurações salvas neste navegador serão substituídas pelos dados de demonstração.', confirm: 'Restaurar', danger: true });
     if (!ok) return;

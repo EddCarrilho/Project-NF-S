@@ -1,68 +1,81 @@
-/* Monta a barra lateral, o cabeçalho e o rodapé em todas as páginas internas. */
+/* ==========================================================================
+   Monta a barra lateral, o cabeçalho e o rodapé de todas as páginas internas,
+   usando o visual do dashboard (assets/css/dashboard.css).
+
+   Estrutura esperada no HTML de cada página:
+     <div class="dashboard-layout" data-page="emitir">
+       <main class="dashboard-content"> ...conteúdo... </main>
+     </div>
+   data-page: dashboard | emitir | historico | configuracoes
+   ========================================================================== */
 (function () {
   const sessao = Store.garantirSessao();
-  if (!sessao) { location.replace(APP_CONFIG.loginUrl); return; }
+  if (!sessao) { location.replace(rota('login')); return; }
 
-  const app = document.querySelector('.app');
-  const main = document.querySelector('.main');
-  const pagina = app.dataset.page;
+  const layout = document.querySelector('.dashboard-layout');
+  const main = layout.querySelector('.dashboard-content');
+  const pagina = layout.dataset.page;
   const empresa = Store.empresa();
 
   const itens = [
-    { id: 'visao', href: 'index.html', label: 'Visão geral', ic: 'grid' },
-    { id: 'emitir', href: 'emitir.html', label: 'Emitir NFS-e', ic: 'plusCircle' },
-    { id: 'historico', href: 'historico.html', label: 'Histórico de notas', ic: 'files' },
-    { id: 'config', href: 'configuracoes.html', label: 'Configurações', ic: 'gear' },
+    { id: 'dashboard', label: 'Visão geral', ic: 'grid' },
+    { id: 'emitir', label: 'Emitir NFS-e', ic: 'plusCircle' },
+    { id: 'historico', label: 'Histórico de notas', ic: 'fileText' },
+    { id: 'configuracoes', label: 'Configurações', ic: 'gear' },
   ];
 
   /* ---------- Barra lateral ---------- */
   const aside = document.createElement('aside');
   aside.className = 'sidebar';
-  aside.id = 'sidebar';
-  aside.setAttribute('aria-label', 'Menu principal');
   aside.innerHTML = `
-    <a class="brand" href="index.html" aria-label="Nota Fácil · Visão geral">
-      ${logoMark(24)}<span class="brand__text"><b>NOTA</b><span>FÁCIL</span></span>
+    <a class="brand" href="${rota('dashboard')}" aria-label="Nota Fácil — visão geral">
+      <img src="../assets/logo-nota-facil.png" alt="Nota Fácil">
     </a>
-    <div class="company-card">
-      <strong data-empresa-nome>${U.esc(empresa.nomeFantasia || empresa.razaoSocial)}</strong>
-      <small data-empresa-cnpj>CNPJ ${U.esc(empresa.cnpj)}</small>
-    </div>
-    <nav class="nav">
-      ${itens.map((i) => `<a href="${i.href}" class="${i.id === pagina ? 'is-active' : ''}" ${i.id === pagina ? 'aria-current="page"' : ''}>${icon(i.ic, 20)}<span>${i.label}</span></a>`).join('')}
+    <section class="company-card" aria-label="Empresa selecionada">
+      <strong data-empresa-nome></strong>
+      <span data-empresa-cnpj></span>
+    </section>
+    <nav class="main-nav" aria-label="Navegação principal">
+      ${itens.map((i) => `<a class="nav-link ${i.id === pagina ? 'is-active' : ''}" href="${rota(i.id)}" ${i.id === pagina ? 'aria-current="page"' : ''}>${icon(i.ic, 15)}<span>${i.label}</span></a>`).join('')}
     </nav>
-    <div class="sidebar__safe">${icon('shield', 16)}<span>Ambiente seguro e protegido</span></div>`;
-  app.insertBefore(aside, main);
+    <p class="security-note">${icon('shield', 14)} Ambiente seguro e protegido</p>`;
+  layout.insertBefore(aside, layout.firstChild);
 
-  /* ---------- Cabeçalho ---------- */
+  /* ---------- Área principal: cabeçalho + conteúdo + rodapé ---------- */
+  const area = document.createElement('div');
+  area.className = 'main-area';
+  layout.insertBefore(area, main);
+
   const header = document.createElement('header');
   header.className = 'topbar';
   header.innerHTML = `
-    <button class="icon-btn topbar__menu" type="button" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false" data-menu>${icon('menu', 22)}</button>
-    <div class="dropdown" data-dd="notif">
-      <button class="icon-btn" type="button" aria-label="Notificações" aria-haspopup="true" aria-expanded="false">${icon('bell', 20)}<span class="badge-dot" hidden></span></button>
-      <div class="dropdown__panel notif-panel" hidden></div>
-    </div>
-    <span class="topbar__divider" aria-hidden="true"></span>
-    <div class="dropdown" data-dd="user">
-      <button class="user-btn" type="button" aria-haspopup="true" aria-expanded="false">
-        <span class="avatar">${U.esc(U.initials(sessao.nome))}</span>
-        <span class="user-name">${U.esc(sessao.nome)}</span>
-        <span class="chev">${icon('chevronDown', 16)}</span>
-      </button>
-      <div class="dropdown__panel" hidden>
-        <div class="dropdown__head"><strong>${U.esc(sessao.nome)}</strong><small>${U.esc(sessao.email || '')}${sessao.perfil ? ` · ${U.esc(sessao.perfil)}` : ''}</small></div>
-        <a href="configuracoes.html">${icon('gear', 16)} Configurações</a>
-        <a href="configuracoes.html#seguranca">${icon('lock', 16)} Segurança da conta</a>
-        <button type="button" class="menu-item" data-logout>${icon('logout', 16)} Sair</button>
+    <span class="mobile-title">Nota Fácil</span>
+    <div class="topbar-actions">
+      <div class="dropdown" data-dd="notif">
+        <button class="icon-button" type="button" aria-label="Notificações" aria-haspopup="true" aria-expanded="false">${icon('bell', 17)}<span class="badge-dot" hidden></span></button>
+        <div class="dropdown__panel notif-panel" hidden></div>
+      </div>
+      <div class="dropdown" data-dd="user">
+        <button class="user-menu" type="button" aria-label="Menu do usuário" aria-haspopup="true" aria-expanded="false">
+          <span class="avatar">${U.esc(U.initials(sessao.nome))}</span>
+          <span class="user-name">${U.esc(sessao.nome)}</span>
+          <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
+        </button>
+        <div class="dropdown__panel" hidden>
+          <div class="dropdown__head"><strong>${U.esc(sessao.nome)}</strong><small>${U.esc(sessao.email || '')}${sessao.perfil ? ` · ${U.esc(sessao.perfil)}` : ''}</small></div>
+          <a href="${rota('configuracoes')}">${icon('gear', 16)} Configurações</a>
+          <a href="${rota('configuracoes')}#seguranca">${icon('lock', 16)} Segurança da conta</a>
+          <button type="button" class="menu-item" data-logout>${icon('logout', 16)} Sair</button>
+        </div>
       </div>
     </div>`;
-  main.insertBefore(header, main.firstChild);
+  area.appendChild(header);
+  area.appendChild(main);
 
   const footer = document.createElement('footer');
-  footer.className = 'footer';
+  footer.className = 'dashboard-footer';
   footer.textContent = `© ${new Date().getFullYear()} Nota Fácil · Gestão fiscal de forma simples e prática`;
-  main.appendChild(footer);
+  area.appendChild(footer);
 
   /* ---------- Dropdowns ---------- */
   const dds = U.$$('.dropdown', header);
@@ -85,13 +98,13 @@
     panel.addEventListener('click', (e) => e.stopPropagation());
   });
   document.addEventListener('click', () => fecharTodos());
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { fecharTodos(); fecharMenu(); } });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharTodos(); });
 
   header.querySelector('[data-logout]').addEventListener('click', async () => {
     const ok = await U.modal({ title: 'Sair da conta?', text: 'Você precisará entrar novamente para acessar suas notas.', confirm: 'Sair' });
     if (!ok) return;
     Store.sair();
-    location.href = APP_CONFIG.loginUrl;
+    location.href = `${rota('login')}?saiu=1`;
   });
 
   /* ---------- Notificações ---------- */
@@ -118,27 +131,18 @@
   atualizarBadge();
   window.atualizarNotificacoes = atualizarBadge;
 
-  /* ---------- Menu no celular ---------- */
-  const btnMenu = header.querySelector('[data-menu]');
-  function fecharMenu() { app.classList.remove('nav-open'); btnMenu.setAttribute('aria-expanded', 'false'); }
-  btnMenu.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const aberto = app.classList.toggle('nav-open');
-    btnMenu.setAttribute('aria-expanded', String(aberto));
-  });
-  app.addEventListener('click', (e) => { if (app.classList.contains('nav-open') && !aside.contains(e.target) && e.target !== btnMenu) fecharMenu(); });
-
-  /* Atualiza o cartão da empresa quando os dados mudam */
+  /* ---------- Cartão da empresa ---------- */
   window.atualizarEmpresaLateral = () => {
     const e = Store.empresa();
-    aside.querySelector('[data-empresa-nome]').textContent = e.nomeFantasia || e.razaoSocial;
-    aside.querySelector('[data-empresa-cnpj]').textContent = `CNPJ ${e.cnpj}`;
+    aside.querySelector('[data-empresa-nome]').textContent = e.nomeFantasia || e.razaoSocial || sessao.nome;
+    aside.querySelector('[data-empresa-cnpj]').textContent = e.cnpj ? `CNPJ ${e.cnpj}` : 'Complete o cadastro da empresa';
   };
+  atualizarEmpresaLateral();
 
   /* Ícones declarados no HTML: <button data-ic="plus">Texto</button> */
   U.$$('[data-ic]').forEach((el) => el.insertAdjacentHTML('afterbegin', icon(el.dataset.ic, Number(el.dataset.icSize) || 18)));
 
-  /* Utilitário compartilhado: selo de status */
+  /* Selo de status usado nas tabelas e na nota */
   window.statusBadge = (s) => {
     const map = {
       autorizada: ['checkCircle', 'Autorizada'],
@@ -147,9 +151,10 @@
       rejeitada: ['alert', 'Rejeitada'],
     };
     const [ic, txt] = map[s] || ['alert', s];
-    return `<span class="status status--${s}">${icon(ic, 14)}${txt}</span>`;
+    return `<span class="nf-status nf-status--${s}">${icon(ic, 14)}${txt}</span>`;
   };
-  /* Link de e-mail compartilhado com a página da nota */
+
+  /* Link de e-mail com os dados da nota (usado na emissão e na página da nota) */
   window.NotaEmail = {
     link(n) {
       const e = Store.empresa();

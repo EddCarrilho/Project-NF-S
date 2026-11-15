@@ -4,7 +4,7 @@
   if (!Store.nota(id)) {
     U.$('.doc-layout').innerHTML = `<div class="card result" style="grid-column:1/-1"><div class="result__icon is-error">${icon('alert', 32)}</div>
       <h2>Nota não encontrada</h2><p>Ela pode ter sido removida ou o endereço está incorreto.</p>
-      <div class="result__btns" style="margin-top:20px"><a class="btn btn-primary" href="historico.html">Ir para o histórico</a></div></div>`;
+      <div class="result__btns" style="margin-top:20px"><a class="btn btn-primary" href="${rota('historico')}">Ir para o histórico</a></div></div>`;
     U.$('[data-titulo]').textContent = 'Nota não encontrada';
     return;
   }
@@ -29,7 +29,7 @@
     const avisos = {
       pendente: `<div class="alert alert--info">${icon('clock', 20)}<div><strong>Aguardando autorização da prefeitura</strong>Este documento ainda não tem valor fiscal. Use "Consultar status" para verificar o retorno.</div></div>`,
       cancelada: `<div class="alert alert--error">${icon('xCircle', 20)}<div><strong>Nota cancelada em ${U.dateTimeBR(n.canceladaEm)}</strong>Motivo: ${U.esc(n.motivoCancelamento)}.</div></div>`,
-      rejeitada: `<div class="alert alert--error" role="alert">${icon('alert', 20)}<div><strong>Nota rejeitada pela prefeitura</strong>${U.esc(n.motivoRejeicao || '')}. <a href="emitir.html?editar=${n.id}">Corrigir e reenviar</a></div></div>`,
+      rejeitada: `<div class="alert alert--error" role="alert">${icon('alert', 20)}<div><strong>Nota rejeitada pela prefeitura</strong>${U.esc(n.motivoRejeicao || '')}. <a href="${rota('emitir', { editar: n.id })}">Corrigir e reenviar</a></div></div>`,
     };
     U.$('[data-alerta]').innerHTML = avisos[n.status] || '';
 
@@ -172,9 +172,9 @@
       `<button type="button" class="btn btn-outline" data-xml>${icon('code', 18)}Baixar XML</button>`];
     if (n.tomador.email && n.status !== 'rejeitada') acoes.push(`<a class="btn btn-outline" href="${NotaEmail.link(n)}">${icon('mail', 18)}Enviar por e-mail</a>`);
     if (n.status === 'pendente') acoes.push(`<button type="button" class="btn btn-outline" data-consultar>${icon('refresh', 18)}Consultar status</button>`);
-    if (n.status === 'rejeitada') acoes.push(`<a class="btn btn-outline" href="emitir.html?editar=${n.id}">${icon('fileEdit', 18)}Corrigir e reenviar</a>`);
+    if (n.status === 'rejeitada') acoes.push(`<a class="btn btn-outline" href="${rota('emitir', { editar: n.id })}">${icon('fileEdit', 18)}Corrigir e reenviar</a>`);
     if (n.status === 'autorizada' || n.status === 'pendente') {
-      acoes.push(`<a class="btn btn-outline" href="emitir.html?editar=${n.id}">${icon('fileEdit', 18)}Editar nota</a>`);
+      acoes.push(`<a class="btn btn-outline" href="${rota('emitir', { editar: n.id })}">${icon('fileEdit', 18)}Editar nota</a>`);
       acoes.push(`<button type="button" class="btn btn-outline" data-cancelar style="color:var(--danger)">${icon('xCircle', 18)}Cancelar nota</button>`);
     }
     const box = U.$('[data-acoes]');

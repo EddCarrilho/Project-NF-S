@@ -37,7 +37,7 @@
   if (original) {
     if (original.status === 'cancelada') {
       U.toast('Notas canceladas não podem ser editadas.', 'error');
-      setTimeout(() => (location.href = `nota.html?id=${original.id}`), 900);
+      setTimeout(() => (location.href = `${rota('nota', { id: original.id })}`), 900);
     }
     document.title = `Editar NFS-e #${original.numero} · Nota Fácil`;
     U.$('[data-crumb]').textContent = `Editar nota #${original.numero}`;
@@ -192,7 +192,7 @@
       if (!ok) return;
     }
     sujo = false;
-    location.href = original ? 'historico.html' : 'index.html';
+    location.href = original ? rota('historico') : rota('dashboard');
   });
 
   form.addEventListener('submit', (e) => {
@@ -261,10 +261,10 @@
         <div style="grid-column:1/-1"><span>Protocolo de autorização</span><strong>${n.protocolo} · ${U.dateTimeBR(n.autorizadaEm)}</strong></div>
       </div>
       <div class="result__btns">
-        <a class="btn btn-primary" href="nota.html?id=${n.id}">${icon('fileText', 18)}Ver nota e PDF</a>
+        <a class="btn btn-primary" href="${rota('nota', { id: n.id })}">${icon('fileText', 18)}Ver nota e PDF</a>
         <button class="btn btn-outline" type="button" data-xml>${icon('code', 18)}Baixar XML</button>
         ${n.tomador.email ? `<button class="btn btn-outline" type="button" data-email>${icon('mail', 18)}Enviar por e-mail</button>` : ''}
-        <a class="btn btn-outline" href="emitir.html">${icon('plus', 18)}Emitir outra nota</a>
+        <a class="btn btn-outline" href="${rota('emitir')}">${icon('plus', 18)}Emitir outra nota</a>
       </div>
     </div>`;
     etapa2.querySelector('[data-xml]').addEventListener('click', () => {

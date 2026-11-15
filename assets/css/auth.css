@@ -236,3 +236,9 @@ button, input { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
+
+/* Mensagens de validação e retorno (auth.js) */
+.field.has-error input { border-color: #b42318; }
+.field-error { margin: 7px 0 0; color: #b42318; font-size: 11px; line-height: 1.45; }
+.form-feedback.is-error { color: #b42318; }
+.form-feedback.is-success { color: #0d5386; }
