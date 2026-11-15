@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Histórico de notas · Nota Fácil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app" data-page="historico">
+    <main class="main">
+      <div class="content">
+        <div class="page-head">
+          <div>
+            <p class="crumb">Consulta / NFS-e</p>
+            <h1 class="page-title">Histórico de notas</h1>
+            <p class="page-sub">Encontre, confira e compartilhe suas NFS-e sem complicação.</p>
+          </div>
+          <button type="button" class="btn btn-outline" data-ic="download" data-exportar>Exportar relatório</button>
+        </div>
+
+        <form class="card" data-filtros role="search" novalidate>
+          <div class="card-head" style="margin-bottom:20px">
+            <h2 class="card-title" style="font-size:16px">Encontre sua nota</h2>
+            <button type="button" class="link-btn" data-limpar>Limpar filtros</button>
+          </div>
+          <div class="filters">
+            <div class="field">
+              <label for="busca">Busca</label>
+              <div class="control">
+                <input id="busca" class="input" type="search" placeholder="Nome, CNPJ ou nº da nota" autocomplete="off">
+                <span class="control__icon" data-ic="search" data-ic-size="20"></span>
+              </div>
+            </div>
+            <div class="field" style="position:relative">
+              <label for="periodo">Data de emissão</label>
+              <div class="control">
+                <button type="button" id="periodo" class="input range-trigger" aria-haspopup="dialog" aria-expanded="false"><span data-periodo-txt>Todo o período</span></button>
+                <span class="control__icon" data-ic="calendar" data-ic-size="20"></span>
+              </div>
+              <div class="range-pop" role="dialog" aria-label="Escolher período" hidden>
+                <div class="presets">
+                  <button type="button" data-preset="mes">Este mês</button>
+                  <button type="button" data-preset="mes-ant">Mês passado</button>
+                  <button type="button" data-preset="30">Últimos 30 dias</button>
+                  <button type="button" data-preset="90">Últimos 90 dias</button>
+                  <button type="button" data-preset="tudo">Todo o período</button>
+                </div>
+                <div class="dates">
+                  <label>De<input type="date" class="input" data-de></label>
+                  <label>Até<input type="date" class="input" data-ate></label>
+                </div>
+                <div class="pop-foot">
+                  <button type="button" class="btn btn-outline btn-sm" data-pop-fechar>Fechar</button>
+                  <button type="button" class="btn btn-primary btn-sm" data-pop-aplicar>Aplicar</button>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="status">Status</label>
+              <select id="status" class="select">
+                <option value="">Todos os status</option>
+                <option value="autorizada">Autorizada</option>
+                <option value="pendente">Pendente</option>
+                <option value="cancelada">Cancelada</option>
+                <option value="rejeitada">Rejeitada</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary" data-ic="search">Buscar</button>
+          </div>
+        </form>
+
+        <div class="results-bar">
+          <h2 data-resultado-titulo aria-live="polite"></h2>
+          <small data-resultado-resumo></small>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr><th style="width:8%">Nota</th><th>Tomador</th><th style="width:10%">Emissão</th><th style="width:11%">Valor</th><th style="width:12%">Status</th><th style="width:25%">Ações</th></tr>
+            </thead>
+            <tbody data-lista></tbody>
+          </table>
+        </div>
+
+        <nav class="pager" aria-label="Paginação">
+          <span class="pager__info" data-pager-info></span>
+          <div class="pager__btns" data-pager></div>
+        </nav>
+
+        <section class="card" style="margin-top:24px">
+          <h2 class="card-title" style="margin-bottom:20px">Valores por situação</h2>
+          <div class="totals" data-totais></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/acoes.js"></script>
+  <script src="js/pages/historico.js"></script>
+</body>
+</html>

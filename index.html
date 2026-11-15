@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visão geral · Nota Fácil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app" data-page="visao">
+    <main class="main">
+      <div class="content">
+        <div class="page-head">
+          <div>
+            <p class="crumb"><span data-fantasia></span> / Visão geral</p>
+            <h1 class="page-title" data-saudacao>Olá.</h1>
+            <p class="page-sub">Um resumo claro para seguir com o seu dia.</p>
+          </div>
+          <a href="emitir.html" class="btn btn-primary" data-ic="plus">Emitir NFS-e</a>
+        </div>
+
+        <div data-alerta></div>
+
+        <section class="stats" aria-label="Resumo dos últimos 30 dias" data-stats></section>
+
+        <section>
+          <div class="section-head">
+            <h2>Últimas 5 notas</h2>
+            <a href="historico.html" class="link-btn">Ver histórico <span data-ic="arrowRight"></span></a>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr><th style="width:12%">Nota</th><th>Tomador</th><th style="width:13%">Emissão</th><th style="width:15%">Valor</th><th style="width:15%">Status</th></tr>
+              </thead>
+              <tbody data-ultimas></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/pages/visao-geral.js"></script>
+</body>
+</html>

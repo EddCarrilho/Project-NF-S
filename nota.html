@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes da nota · Nota Fácil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app" data-page="historico">
+    <main class="main">
+      <div class="content">
+        <div class="page-head">
+          <div>
+            <p class="crumb"><a href="historico.html">Consulta / NFS-e</a> / Detalhes</p>
+            <h1 class="page-title" data-titulo>Nota fiscal</h1>
+            <p class="page-sub" data-sub></p>
+          </div>
+          <a href="historico.html" class="btn btn-outline" data-ic="arrowLeft">Voltar ao histórico</a>
+        </div>
+
+        <div class="doc-status" data-alerta></div>
+
+        <div class="doc-layout">
+          <div class="danfe-wrap"><div class="danfe" data-danfe></div></div>
+
+          <aside class="doc-side">
+            <section class="card">
+              <h2 class="card-title" style="font-size:16px;margin-bottom:16px">Arquivos e ações</h2>
+              <div class="stack" data-acoes></div>
+            </section>
+            <section class="card">
+              <h2 class="card-title" style="font-size:16px;margin-bottom:8px">Histórico da nota</h2>
+              <ul class="doc-history" data-historico></ul>
+            </section>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/barcode.js"></script>
+  <script src="js/acoes.js"></script>
+  <script src="js/pages/nota.js"></script>
+</body>
+</html>

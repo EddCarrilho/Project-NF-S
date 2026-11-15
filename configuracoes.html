@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurações · Nota Fácil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app" data-page="config">
+    <main class="main">
+      <div class="content">
+        <div class="page-head">
+          <div>
+            <p class="crumb muted">Conta / Configurações</p>
+            <h1 class="page-title">Configurações</h1>
+            <p class="page-sub">Sua empresa organizada. Seu acesso protegido.</p>
+          </div>
+        </div>
+
+        <div class="settings">
+          <div>
+            <!-- Dados cadastrais -->
+            <form class="card" id="form-empresa" novalidate>
+              <h2 class="card-title">Dados cadastrais</h2>
+              <p class="card-sub">Informações utilizadas na emissão das suas notas.</p>
+              <div class="stack">
+                <div class="field">
+                  <label for="cnpj">CNPJ</label>
+                  <div class="control">
+                    <input id="cnpj" class="input" readonly aria-describedby="cnpj-hint">
+                    <span class="control__icon" data-ic="lock"></span>
+                  </div>
+                  <span class="hint" id="cnpj-hint">Para alterar o CNPJ, fale com o suporte.</span>
+                </div>
+                <div class="field">
+                  <label for="razaoSocial">Razão social *</label>
+                  <input id="razaoSocial" class="input" maxlength="150">
+                </div>
+                <div class="field">
+                  <label for="nomeFantasia">Nome fantasia</label>
+                  <input id="nomeFantasia" class="input" maxlength="80">
+                </div>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="inscricaoMunicipal">Inscrição municipal *</label>
+                    <input id="inscricaoMunicipal" class="input" inputmode="numeric" maxlength="15">
+                  </div>
+                  <div class="field">
+                    <label for="regime">Regime tributário *</label>
+                    <select id="regime" class="select">
+                      <option>Simples Nacional</option>
+                      <option>MEI</option>
+                      <option>Lucro Presumido</option>
+                      <option>Lucro Real</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="emailEmpresa">E-mail da empresa *</label>
+                  <input id="emailEmpresa" type="email" class="input">
+                </div>
+                <div class="field">
+                  <label for="endereco">Endereço fiscal *</label>
+                  <input id="endereco" class="input" placeholder="Rua, número · Cidade / UF">
+                </div>
+                <div class="field">
+                  <label for="cepEmpresa">CEP *</label>
+                  <input id="cepEmpresa" class="input" inputmode="numeric">
+                </div>
+                <div><button type="submit" class="btn btn-primary">Salvar dados cadastrais</button></div>
+              </div>
+            </form>
+
+            <!-- Logo -->
+            <section class="card" id="logo">
+              <h2 class="card-title">Logo da empresa</h2>
+              <p class="card-sub">Sua identidade nos documentos enviados aos clientes.</p>
+              <div class="file-row">
+                <div class="thumb" data-logo-thumb></div>
+                <div style="flex:1;min-width:0">
+                  <strong data-logo-nome></strong>
+                  <small data-logo-info></small>
+                </div>
+                <button type="button" class="link-btn" data-logo-remover hidden>Remover</button>
+              </div>
+              <label class="dropzone" data-dropzone>
+                <input type="file" accept="image/png,image/jpeg" class="sr-only" data-logo-input>
+                <span data-ic="cloudUp" data-ic-size="22"></span>
+                <strong data-dz-txt>Clique para enviar o arquivo</strong>
+                <small>PNG ou JPG · Até 2 MB · Fundo claro</small>
+              </label>
+            </section>
+          </div>
+
+          <div>
+            <!-- Segurança -->
+            <section class="card" id="seguranca">
+              <h2 class="card-title">Segurança</h2>
+              <p class="card-sub">Mantenha sua conta protegida.</p>
+              <form class="stack" id="form-senha" novalidate>
+                <div class="field">
+                  <label for="emailAcesso">E-mail de acesso</label>
+                  <input id="emailAcesso" type="email" class="input" readonly>
+                </div>
+                <div class="field">
+                  <label for="senhaAtual">Senha atual</label>
+                  <div class="control">
+                    <input id="senhaAtual" type="password" class="input" placeholder="Digite sua senha" autocomplete="current-password">
+                    <button type="button" class="control__btn" data-olho aria-label="Mostrar senha"></button>
+                  </div>
+                </div>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="novaSenha">Nova senha</label>
+                    <div class="control">
+                      <input id="novaSenha" type="password" class="input" placeholder="Mínimo 8 caracteres" autocomplete="new-password">
+                      <button type="button" class="control__btn" data-olho aria-label="Mostrar senha"></button>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="confirmarSenha">Confirmar senha</label>
+                    <div class="control">
+                      <input id="confirmarSenha" type="password" class="input" placeholder="Repita a nova senha" autocomplete="new-password">
+                      <button type="button" class="control__btn" data-olho aria-label="Mostrar senha"></button>
+                    </div>
+                  </div>
+                </div>
+                <div><button type="submit" class="btn btn-outline">Atualizar senha</button></div>
+              </form>
+              <hr class="hr">
+              <div class="row-between toggle-row">
+                <div>
+                  <strong id="lbl-2fa">Verificação em duas etapas</strong>
+                  <small>Um código extra para proteger o acesso.</small>
+                </div>
+                <label class="switch"><input type="checkbox" data-2fa aria-labelledby="lbl-2fa"><span></span></label>
+              </div>
+              <p class="toggle-state" data-2fa-estado></p>
+            </section>
+
+            <!-- Certificado -->
+            <section class="card" id="certificado">
+              <h2 class="card-title">Certificado digital</h2>
+              <p class="card-sub">Utilizado para assinar e autorizar suas NFS-e.</p>
+              <div class="cert-box" data-cert-box>
+                <span data-ic="shield" data-ic-size="20"></span>
+                <div><strong data-cert-titulo></strong><small data-cert-sub></small></div>
+              </div>
+              <div class="kv" data-cert-kv></div>
+              <label class="btn btn-outline" style="cursor:pointer">
+                <input type="file" accept=".pfx,.p12" class="sr-only" data-cert-input>
+                <span data-ic="upload"></span>Substituir certificado
+              </label>
+              <p class="fine">Arquivo .pfx ou .p12 · Protegido com criptografia. A senha do certificado nunca é exibida.</p>
+            </section>
+
+            <!-- Dados de demonstração -->
+            <section class="card">
+              <h2 class="card-title">Dados de demonstração</h2>
+              <p class="card-sub">Os dados ficam salvos neste navegador. Restaure para voltar às notas de exemplo.</p>
+              <button type="button" class="btn btn-outline" data-ic="refresh" data-restaurar>Restaurar dados de exemplo</button>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/icons.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/pages/configuracoes.js"></script>
+</body>
+</html>
