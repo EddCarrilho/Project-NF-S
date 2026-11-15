@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Crie sua conta na Nota Fácil." />
+    <meta name="theme-color" content="#062d49" />
+    <title>Criar conta | Nota Fácil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/auth.css" />
+    <script src="../assets/js/auth.js" defer></script>
+  </head>
+  <body>
+    <main class="auth-layout">
+      <section class="brand-panel" aria-label="Nota Fácil">
+        <div class="brand-copy">
+          <h2>Gestão simples.<br />Negócio organizado.</h2>
+          <p class="brand-description">Tenha suas notas fiscais sempre à mão.</p>
+        </div>
+        <img class="brand-logo" src="../assets/logo-nota-facil.png" alt="Nota Fácil" />
+      </section>
+      <section class="form-panel" aria-labelledby="register-title">
+        <a class="help-link" href="">Ajuda</a>
+        <div class="form-content register-content">
+          <header class="form-heading">
+            <h1 id="register-title">Crie sua conta</h1>
+            <p>Preencha os dados abaixo e dê o próximo passo com segurança.</p>
+          </header>
+
+          <form data-auth-form="register">
+            <div class="field">
+              <label for="cnpj">CNPJ</label>
+              <input id="cnpj" name="cnpj" type="text" inputmode="numeric" placeholder="00.000.000/0000-00" autocomplete="off" required />
+              <p class="field-help">Informe o CNPJ da sua empresa.</p>
+            </div>
+
+            <div class="field">
+              <label for="company-name">Razão social</label>
+              <input id="company-name" name="companyName" type="text" placeholder="Nome registrado da empresa" autocomplete="organization" required />
+            </div>
+
+            <div class="field">
+              <label for="register-email">E-mail</label>
+              <input id="register-email" name="email" type="email" placeholder="voce@empresa.com.br" autocomplete="email" required />
+            </div>
+
+            <div class="field">
+              <label for="register-password">Senha</label>
+              <div class="password-input">
+                <input id="register-password" name="password" type="password" placeholder="Crie uma senha segura" autocomplete="new-password" minlength="8" required />
+                <button class="password-toggle" type="button" aria-label="Mostrar senha" aria-pressed="false">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z" />
+                    <circle cx="12" cy="12" r="2.6" />
+                  </svg>
+                </button>
+              </div>
+              <p class="field-help">Use 8 ou mais caracteres, letras e números.</p>
+            </div>
+
+            <label class="terms-option">
+              <input name="terms" type="checkbox" required />
+              <span>Li e concordo com os Termos de uso e a Política de privacidade da Nota Fácil.</span>
+            </label>
+
+            <button class="submit-button register-submit" type="submit"><span aria-hidden="true">→</span> Criar conta</button>
+            <p class="form-feedback" role="status" aria-live="polite"></p>
+            <p class="signin-prompt">Já tem uma conta? <a href="../login/index.html">Entrar</a></p>
+          </form>
+        </div>
+        <footer class="form-footer">
+          © 2026 Nota Fácil <span aria-hidden="true">·</span> Privacidade e termos de uso
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>

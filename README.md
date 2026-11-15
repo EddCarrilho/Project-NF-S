@@ -50,6 +50,31 @@ O protótipo foi desenvolvido no Figma para representar visualmente a aplicaçã
 | Tecnologia/Ferramenta | Utilização |
 |---|---|
 | Figma | Desenvolvimento dos wireframes e protótipos da aplicação. |
+| HTML | Estrutura das páginas de login e cadastro. |
+| CSS | Estilização responsiva e componentes visuais compartilhados. |
+| JavaScript | Interações simples dos formulários, como mostrar/ocultar senha e validar campos. |
+
+### Estrutura atual do front-end
+
+```text
+.
+├── assets/
+│   ├── css/
+│   │   ├── auth.css
+│   │   └── dashboard.css
+│   ├── js/
+│   │   └── auth.js
+│   ├── fundo-login.jpg
+│   └── logo-nota-facil.png
+├── dashboard/
+│   └── index.html
+├── cadastro/
+│   └── index.html
+└── login/
+    └── index.html
+```
+
+Abra `login/index.html`, `cadastro/index.html` ou `dashboard/index.html` em um navegador. Login e cadastro compartilham o mesmo CSS e JavaScript; o painel visual fica diretamente no HTML para manter a implementação simples. A visão geral usa dados estáticos de exemplo. Os formulários e ações precisarão ser conectados a uma API e às demais telas quando o backend for implementado.
 
 ## 9. Demonstração
 
@@ -63,9 +88,3 @@ O protótipo foi desenvolvido no Figma para representar visualmente a aplicaçã
 * Kevillyn Sandes Dos Santos
 * Leticia Vanni De Aquino
 * Luan Castilho Batista Da Silva
-
-
-
-
-
-
