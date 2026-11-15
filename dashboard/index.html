@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Visão geral das notas fiscais na Nota Fácil." />
+    <meta name="theme-color" content="#062d49" />
+    <title>Visão geral | Nota Fácil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
+  </head>
+  <body>
+    <div class="dashboard-layout">
+      <aside class="sidebar">
+        <a class="brand" href="index.html" aria-label="Nota Fácil — visão geral">
+          <img src="../assets/logo-nota-facil.png" alt="Nota Fácil" />
+        </a>
+
+        <section class="company-card" aria-label="Empresa selecionada">
+          <strong>Nome da empresa / usuário</strong>
+          <span>CNPJ do usuário</span>
+        </section>
+
+        <nav class="main-nav" aria-label="Navegação principal">
+          <a class="nav-link is-active" href="index.html" aria-current="page">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            <span>Visão geral</span>
+          </a>
+          <a class="nav-link" href="#emitir-nota">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+            <span>Emitir NFS-e</span>
+          </a>
+          <a class="nav-link" href="#historico">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg>
+            <span>Histórico de notas</span>
+          </a>
+          <a class="nav-link" href="#configuracoes">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1a1.7 1.7 0 0 1-2.4 2.4l-.1-.1a1.7 1.7 0 0 0-2.9 1.2v.2a1.7 1.7 0 0 1-3.4 0v-.2a1.7 1.7 0 0 0-2.9-1.2l-.1.1a1.7 1.7 0 1 1-2.4-2.4l.1-.1a1.7 1.7 0 0 0-1.2-2.9H4a1.7 1.7 0 0 1 0-3.4h.2a1.7 1.7 0 0 0 1.2-2.9l-.1-.1a1.7 1.7 0 1 1 2.4-2.4l.1.1a1.7 1.7 0 0 0 2.9-1.2V2a1.7 1.7 0 0 1 3.4 0v.2a1.7 1.7 0 0 0 2.9 1.2l.1-.1a1.7 1.7 0 0 1 2.4 2.4l-.1.1a1.7 1.7 0 0 0 1.2 2.9h.2a1.7 1.7 0 0 1 0 3.4h-.2a1.7 1.7 0 0 0-1.2 2.9Z"/></svg>
+            <span>Configurações</span>
+          </a>
+        </nav>
+
+        <p class="security-note">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg>
+          Ambiente seguro e protegido
+        </p>
+      </aside>
+
+      <div class="main-area">
+        <header class="topbar">
+          <span class="mobile-title">Nota Fácil</span>
+          <div class="topbar-actions">
+            <button class="icon-button" type="button" aria-label="Notificações">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+            </button>
+            <button class="user-menu" type="button" aria-label="Menu do usuário">
+              <span class="avatar">CL</span>
+              <span class="user-name">Nome do usuário</span>
+              <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <main class="dashboard-content">
+          <div class="page-intro">
+            <div>
+              <p class="breadcrumb">ESTÚDIO AURORA / VISÃO GERAL</p>
+              <h1>Olá, nome do usuário. Tudo sob controle.</h1>
+              <p class="intro-description">Um resumo claro para seguir com o seu dia.</p>
+            </div>
+            <a class="primary-action" href="#emitir-nota">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              Emitir NFS-e
+            </a>
+          </div>
+
+          <section class="invoices-section" aria-labelledby="invoices-title">
+            <div class="section-heading">
+              <h2 id="invoices-title">Últimas 5 notas</h2>
+              <a href="#historico">Ver histórico <span aria-hidden="true">→</span></a>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="invoice-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nota</th>
+                    <th scope="col">Tomador</th>
+                    <th scope="col">Emissão</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="invoice-number">#1058</td>
+                    <td><strong>Horizonte Tecnologia</strong><small>23.456.789/0001-01</small></td>
+                    <td>28/10/2026</td>
+                    <td class="amount">R$ 4.800,00</td>
+                    <td><span class="status status-authorized"><span></span>Autorizada</span></td>
+                  </tr>
+                  <tr>
+                    <td class="invoice-number">#1057</td>
+                    <td><strong>Clínica Bem Viver</strong><small>34.567.890/0001-12</small></td>
+                    <td>27/10/2026</td>
+                    <td class="amount">R$ 3.200,00</td>
+                    <td><span class="status status-authorized"><span></span>Autorizada</span></td>
+                  </tr>
+                  <tr>
+                    <td class="invoice-number">#1056</td>
+                    <td><strong>Café Jardim</strong><small>45.678.901/0001-23</small></td>
+                    <td>26/10/2026</td>
+                    <td class="amount">R$ 1.800,00</td>
+                    <td><span class="status status-pending"><span></span>Pendente</span></td>
+                  </tr>
+                  <tr>
+                    <td class="invoice-number">#1055</td>
+                    <td><strong>Papelaria Traço</strong><small>56.789.012/0001-34</small></td>
+                    <td>23/10/2026</td>
+                    <td class="amount">R$ 2.500,00</td>
+                    <td><span class="status status-authorized"><span></span>Autorizada</span></td>
+                  </tr>
+                  <tr>
+                    <td class="invoice-number">#1054</td>
+                    <td><strong>Casa Nativa</strong><small>67.890.123/0001-45</small></td>
+                    <td>21/10/2026</td>
+                    <td class="amount">R$ 1.200,00</td>
+                    <td><span class="status status-cancelled"><span></span>Cancelada</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+
+        <footer class="dashboard-footer">© 2026 Nota Fácil · Gestão fiscal de forma simples e prática</footer>
+      </div>
+    </div>
+  </body>
+</html>

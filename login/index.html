@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Acesse a Nota Fácil para gerenciar suas notas fiscais." />
+    <meta name="theme-color" content="#062d49" />
+    <title>Entrar | Nota Fácil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/auth.css" />
+    <script src="../assets/js/auth.js" defer></script>
+  </head>
+  <body>
+    <main class="auth-layout">
+      <section class="brand-panel" aria-label="Nota Fácil">
+        <div class="brand-copy">
+          <h2>Gestão simples.<br />Negócio organizado.</h2>
+          <p class="brand-description">Tenha suas notas fiscais sempre à mão.</p>
+        </div>
+        <img class="brand-logo" src="../assets/logo-nota-facil.png" alt="Nota Fácil" />
+      </section>
+      <section class="form-panel" aria-labelledby="login-title">
+        <a class="help-link" href="">Ajuda</a>
+        <div class="form-content login-content">
+          <header class="form-heading">
+            <h1 id="login-title">Bem-vindo de volta</h1>
+            <p>Acesse sua conta para continuar.</p>
+          </header>
+
+          <form data-auth-form="login">
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input id="email" name="email" type="email" placeholder="email@dominio.com" autocomplete="email" required />
+            </div>
+
+            <div class="field">
+              <label for="password">Senha</label>
+              <div class="password-input">
+                <input id="password" name="password" type="password" placeholder="Digite sua senha" autocomplete="current-password" required />
+                <button class="password-toggle" type="button" aria-label="Mostrar senha" aria-pressed="false">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z" />
+                    <circle cx="12" cy="12" r="2.6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-options">
+              <label class="remember-option" for="remember">
+                <input id="remember" name="remember" type="checkbox" />
+                <span>Lembrar de mim</span>
+              </label>
+              <a href="">Esqueci minha senha</a>
+            </div>
+
+            <button class="submit-button" type="submit">Entrar</button>
+            <p class="form-feedback" role="status" aria-live="polite"></p>
+            <div class="signup-divider"><span>Novo por aqui?</span></div>
+            <a class="signup-button" href="../cadastro/index.html">Criar minha conta</a>
+          </form>
+        </div>
+        <footer class="form-footer">
+          © 2026 Nota Fácil <span aria-hidden="true">·</span> Privacidade e termos de uso
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>
