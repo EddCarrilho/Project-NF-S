@@ -130,11 +130,25 @@ Também dá para criar uma conta nova no cadastro. Ela começa sem notas.
 - A autorização da prefeitura é **simulada**, e a tela de resultado informa isso.
 - "Salvar PDF" usa a impressão do navegador (destino: Salvar como PDF).
 
-## 14. Vídeo de Demonstração
+## 14. Limitações e próximos passos
+
+A versão atual da aplicação é uma PoC (Proof of Concept), desenvolvida com foco na validação da interface, navegação e principais funcionalidades do sistema.
+
+A aplicação utiliza JavaScript e Web APIs para implementar recursos de interação, autenticação, gerenciamento de sessão e armazenamento de informações no navegador. A persistência dos dados é realizada por meio da Web Storage API, utilizando o localStorage, permitindo cadastrar, consultar, editar e armazenar informações durante a utilização do sistema.
+
+Também são utilizadas integrações com serviços externos, como a API ViaCEP, para automatizar a consulta de endereços a partir do CEP informado pelo usuário.
+
+A autorização das notas fiscais pela prefeitura é simulada nesta versão, permitindo demonstrar o fluxo de emissão e acompanhamento dos status das NFS-e.
+
+Como evolução do projeto, estão previstas melhorias na infraestrutura de armazenamento, integração com serviços externos de autorização fiscal e expansão dos recursos de gerenciamento e segurança dos dados.
+
+## 15. Vídeo de Demonstração
 
 [Assistir ao vídeo de demonstração da aplicação](https://drive.google.com/file/d/1AAJi9ErYaOItWGEK3pugZYvUo9eGVItt/view?usp=sharing)
 
-## 15. Integrantes
+Vídeo realizado por Leticia Vanni De Aquino.
+
+## 16. Integrantes
 
 * Eduardo Sewnarine Carrilho
 * Jhulia Mirelli Tomasi
