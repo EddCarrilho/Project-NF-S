@@ -37,13 +37,13 @@ As principais áreas previstas são: Login; Dashboard; Notas Fiscais; Nova Nota 
 
 Os wireframes foram desenvolvidos no Figma para representar a estrutura e a organização das principais telas da aplicação, servindo como base para a definição da interface. O projeto considera uma interface simples, intuitiva e responsiva, com padronização dos elementos visuais e facilidade de navegação.
 
-**Acesso ao wireframes: [Visualizar no Figma](https://www.figma.com/proto/Z1F2KVItdTjDWApU98bfyq/NF---ADM---PI?node-id=3-15277&t=mKZM1Z97of7UQ5dT-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)**
+**Acesso ao wireframes:** [Visualizar no Figma](https://www.figma.com/proto/Z1F2KVItdTjDWApU98bfyq/NF---ADM---PI?node-id=3-15277&t=mKZM1Z97of7UQ5dT-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)
 
 ## 7. Protótipo e fluxo de navegação
 
 O protótipo foi desenvolvido no Figma para representar visualmente a aplicação e demonstrar a navegação entre suas principais funcionalidades. O fluxo contempla o acesso à plataforma, o cadastro e a consulta de notas fiscais.
 
-**Acesso ao protótipo: [Visualizar no Figma](https://www.figma.com/proto/xz5Tmdl1CTy0wQpDpvcKBP/NF---Prot%C3%B3tipo?node-id=3-15277&t=QLNieyNep3wvQmIt-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)**
+**Acesso ao protótipo:** [Visualizar no Figma](https://www.figma.com/proto/xz5Tmdl1CTy0wQpDpvcKBP/NF---Prot%C3%B3tipo?node-id=3-15277&t=QLNieyNep3wvQmIt-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)
 
 ## 8. Tecnologias e ferramentas utilizadas
 
@@ -54,7 +54,7 @@ O protótipo foi desenvolvido no Figma para representar visualmente a aplicaçã
 | CSS | Estilização responsiva e componentes visuais compartilhados. |
 | JavaScript | Interações simples dos formulários, como mostrar/ocultar senha e validar campos. |
 
-### Estrutura atual do front-end
+## 9. Estrutura atual do front-end
 
 ```text
 .
@@ -76,20 +76,7 @@ O protótipo foi desenvolvido no Figma para representar visualmente a aplicaçã
 
 Abra `login/index.html`, `cadastro/index.html` ou `dashboard/index.html` em um navegador. Login e cadastro compartilham o mesmo CSS e JavaScript; o painel visual fica diretamente no HTML para manter a implementação simples. A visão geral usa dados estáticos de exemplo. Os formulários e ações precisarão ser conectados a uma API e às demais telas quando o backend for implementado.
 
-## 9. Demonstração
-
-# **(LINK DO VÍDEO)**
-
-## 10. Integrantes
-
-* Eduardo Sewnarine Carrilho
-* Jhulia Mirelli Tomasi
-* Kayk Junior Da Silva Trindade
-* Kevillyn Sandes Dos Santos
-* Leticia Vanni De Aquino
-* Luan Castilho Batista Da Silva
-
-## Como rodar o site
+## 10. Como rodar o site
 
 Abra o arquivo `index.html` da raiz no navegador. Ele leva para o login, ou para o dashboard se você já estiver logado. A busca automática de CEP funciona melhor servindo a pasta com um servidor local:
 
@@ -100,7 +87,7 @@ python -m http.server 8000   # depois acesse http://localhost:8000
 **Conta de demonstração** (já vem com notas de exemplo): `camila@estudioaurora.com.br`, senha `aurora2026`.
 Também dá para criar uma conta nova no cadastro. Ela começa sem notas.
 
-## Estrutura de pastas
+## 11. Estrutura de pastas
 
 ```
 .
@@ -130,15 +117,28 @@ Também dá para criar uma conta nova no cadastro. Ela começa sem notas.
 └── nota/index.html          Detalhes da nota: PDF, XML e envio por e-mail
 ```
 
-## Como as páginas se conectam
+## 12. Como as páginas se conectam
 
 - Login → `dashboard/`. A sessão fica em `localStorage` (`notafacil:sessao`). Sem sessão, as páginas internas voltam para o login.
 - Cadastro → login, com o e-mail já preenchido.
 - O menu lateral e o cabeçalho de todas as páginas internas são gerados pelo `assets/js/layout.js`. Para criar uma página nova, copie o esqueleto de uma existente (`<div class="dashboard-layout" data-page="...">` + `<main class="dashboard-content">`) e cadastre o endereço em `assets/js/config.js`.
 - O botão **Sair** apaga a sessão e volta para o login.
 
-## Observações
+## 13. Observações
 
 - Os dados ficam salvos no navegador (`localStorage`). Para usar um servidor real, troque as funções de `assets/js/store.js` e `assets/js/auth.js` mantendo os mesmos nomes.
 - A autorização da prefeitura é **simulada**, e a tela de resultado informa isso.
 - "Salvar PDF" usa a impressão do navegador (destino: Salvar como PDF).
+
+## 14. Vídeo de Demonstração
+
+[Assistir ao vídeo de demonstração da aplicação](https://drive.google.com/file/d/1AAJi9ErYaOItWGEK3pugZYvUo9eGVItt/view?usp=sharing)
+
+## 15. Integrantes
+
+* Eduardo Sewnarine Carrilho
+* Jhulia Mirelli Tomasi
+* Kayk Junior Da Silva Trindade
+* Kevillyn Sandes Dos Santos
+* Leticia Vanni De Aquino
+* Luan Castilho Batista Da Silva
