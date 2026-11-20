@@ -141,6 +141,10 @@ Essa escolha foi deliberada. Como a disciplina é EAD e não há data definida p
 Optamos por entregar um **backend simulado no cliente**. Toda a lógica de negócio (cálculo de ISS, geração de chave de acesso, controle de status, histórico de eventos, regras de edição e cancelamento) e o repositório de dados foram implementados em JavaScript, com persistência via localStorage. Dessa forma, a PoC demonstra a construção da lógica e a integração dos dados de ponta a ponta, mesmo sem um servidor clássico.
 Como as páginas só consomem as funções desses módulos, a migração para um servidor real exige apenas substituí-las por chamadas a uma API, mantendo os mesmos nomes, sem alterar a interface.
 
+**Funcionamento e escopo da PoC.** Todas as funcionalidades previstas no escopo da PoC estão implementadas e foram demonstradas em funcionamento no vídeo, incluindo cadastro, login, emissão, consulta e gerenciamento de notas fiscais. Cada funcionalidade possui lógica de negócio própria e opera sobre um modelo de dados definido, com entidades (usuário, empresa emitente, cliente, serviço e nota fiscal) e relacionamentos entre elas. O que é simulado é a infraestrutura: o navegador do usuário assume o papel do servidor, executando a lógica e armazenando os dados localmente via localStorage. Por isso, os dados persistem no navegador em que foram criados.
+
+**Organização da camada de dados.** O localStorage é apenas o mecanismo de armazenamento. A organização dos dados é feita por entidades, com relacionamentos entre elas (por exemplo, uma nota fiscal está associada a um cliente e à empresa emitente). O acesso a essas entidades fica concentrado em módulos de repositório (`assets/js/store.js` e `assets/js/auth.js`), separados das telas (`assets/js/pages/`), o que mantém as regras de negócio isoladas da interface.
+
 São utilizadas também integrações com serviços externos, como a API ViaCEP, para automatizar a consulta de endereços a partir do CEP informado pelo usuário.
 
 A autorização das notas fiscais pela prefeitura é simulada nesta versão, permitindo demonstrar o fluxo de emissão e acompanhamento dos status das NFS-e.
