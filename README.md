@@ -149,7 +149,7 @@ São utilizadas também integrações com serviços externos, como a API ViaCEP,
 
 A autorização das notas fiscais pela prefeitura é simulada nesta versão, permitindo demonstrar o fluxo de emissão e acompanhamento dos status das NFS-e.
 
-Hospedagem da aplicação. O projeto está publicado no GitHub Pages, que atua como servidor externo de hospedagem estática, disponibilizando a aplicação pela internet por meio de um navegador, sem necessidade de instalação local. A lógica de negócio e a persistência dos dados continuam sendo executadas no navegador do usuário.
+Hospedagem da aplicação. O projeto está publicado no GitHub Pages, que atua como servidor externo de hospedagem estática, disponibilizando a aplicação pela internet por meio de um navegador, sem necessidade de instalação local. A lógica de negócio e a persistência dos dados continuam sendo executadas no navegador do usuário. Link: https://eddcarrilho.github.io/Project-NF-S/
 
 Como evolução do projeto, estão previstas melhorias na infraestrutura de armazenamento, integração com serviços externos de autorização fiscal e expansão dos recursos de gerenciamento e segurança dos dados.
 
