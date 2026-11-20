@@ -150,9 +150,9 @@ Como evolução do projeto, estão previstas melhorias na infraestrutura de arma
 
 ## 15. Vídeo de Demonstração
 
-[Assistir ao vídeo de demonstração da aplicação](https://drive.google.com/file/d/1AAJi9ErYaOItWGEK3pugZYvUo9eGVItt/view?usp=sharing)
+[Assistir ao vídeo de demonstração da aplicação](https://youtu.be/VB7mLsBXKKU)
 
-Vídeo realizado por Leticia Vanni De Aquino.
+_Vídeo realizado por Leticia Vanni De Aquino._
 
 ## 16. Integrantes
 
