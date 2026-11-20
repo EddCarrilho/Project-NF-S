@@ -136,11 +136,16 @@ A versão atual da aplicação é uma PoC (Proof of Concept), desenvolvida com f
 
 A aplicação utiliza JavaScript e Web APIs para implementar recursos de interação, autenticação, gerenciamento de sessão e armazenamento de informações no navegador. A persistência dos dados é realizada por meio da Web Storage API, utilizando o localStorage, permitindo cadastrar, consultar, editar e armazenar informações durante a utilização do sistema.
 
-Também são utilizadas integrações com serviços externos, como a API ViaCEP, para automatizar a consulta de endereços a partir do CEP informado pelo usuário.
+Essa escolha foi deliberada. Como a disciplina é EAD e não há data definida para a avaliação, um servidor externo gratuito poderia estar suspenso por inatividade no momento da correção. Manter o backend no navegador e publicar a aplicação no GitHub Pages garante **disponibilidade permanente e custo zero**, sem depender de serviço externo.
+
+Como as páginas só consomem as funções desses módulos, a migração para um servidor real exige apenas substituí-las por chamadas a uma API, mantendo os mesmos nomes, sem alterar a interface.
+
+São utilizadas também integrações com serviços externos, como a API ViaCEP, para automatizar a consulta de endereços a partir do CEP informado pelo usuário.
 
 A autorização das notas fiscais pela prefeitura é simulada nesta versão, permitindo demonstrar o fluxo de emissão e acompanhamento dos status das NFS-e.
 
 Como evolução do projeto, estão previstas melhorias na infraestrutura de armazenamento, integração com serviços externos de autorização fiscal e expansão dos recursos de gerenciamento e segurança dos dados.
+
 
 ## 15. Vídeo de Demonstração
 
